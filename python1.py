@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import requests
 
 app = Flask("My App")
@@ -23,8 +23,11 @@ def sign_up():
 
     send_simple_message(input_email=form_data ["email"])
     print (form_data["email"])
-    return "All OK"
-    
+    return redirect("/thankyou")
+
+@app.route("/thankyou")
+def thank_you():
+        return render_template("message.html")
 
 
 app.run(debug=True)
